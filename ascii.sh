@@ -1,31 +1,20 @@
 #!/bin/bash
 
-ascii_art='
-________                  __        ___.
-\_____  \   _____ _____  |  | ____ _\_ |__
- /   |   \ /     \\__   \ |  |/ /  |  \ __ \
-/    |    \  Y Y  \/ __ \|    <|  |  / \_\ \
-\_______  /__|_|  (____  /__|_ \____/|___  /
-        \/      \/     \/     \/         \/
+CONVERTER="$OMAKUB_PATH/bin/omakub-sub/screensaver-converter.py"
+LOGO_IMG="$OMAKUB_PATH/applications/icons/screensaver-logo.jpeg"
 
-'
-
-# Define the color gradient (shades of cyan and blue)
-colors=(
-	'\033[38;5;81m' # Cyan
-	'\033[38;5;75m' # Light Blue
-	'\033[38;5;69m' # Sky Blue
-	'\033[38;5;63m' # Dodger Blue
-	'\033[38;5;57m' # Deep Sky Blue
-	'\033[38;5;51m' # Cornflower Blue
-	'\033[38;5;45m' # Royal Blue
-)
-
-# Split the ASCII art into lines
-IFS=$'\n' read -rd '' -a lines <<<"$ascii_art"
-
-# Print each line with the corresponding color
-for i in "${!lines[@]}"; do
-	color_index=$((i % ${#colors[@]}))
-	echo -e "${colors[color_index]}${lines[i]}"
-done
+if [ -f "$CONVERTER" ] && [ -f "$LOGO_IMG" ]; then
+  python3 "$CONVERTER" "$LOGO_IMG" 50 9 0 2>/dev/null
+else
+  cat << 'EOF'
+\033[38;2;168;85;247m                      ██          ██    ████\033[0m
+\033[38;2;147;93;246m                      ██          ██    ████\033[0m
+\033[38;2;126;101;246m ████ ██ ██ ██  ████  ██ ██ ██ ██ █████ ████\033[0m
+\033[38;2;106;108;246m███████████████ █████ █████ ██ ██ █████ ████\033[0m
+\033[38;2;85;116;246m██  ██ ██ ██ ██  █ ██ ████  ██ ██ ██ ██ ████\033[0m
+\033[38;2;64;127;245m██  ██ █  ██ ██ █████ ████  ██ ██ ██ ██ ████\033[0m
+\033[38;2;45;144;238m██  ██ █  ██ ██ ██ ██ ██ ██ ██ ██ ██ ██ ████\033[0m
+\033[38;2;25;169;227m ████  █  ██ ██ ████████ ██ █████ █████ ████\033[0m
+\033[38;2;6;182;212m                                        ████\033[0m
+EOF
+fi

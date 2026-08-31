@@ -13,6 +13,6 @@ BACKGROUND_DEST_PATH="$BACKGROUND_DEST_DIR/$(echo $OMAKUB_THEME_BACKGROUND | tr 
 if [ ! -d "$BACKGROUND_DEST_DIR" ]; then mkdir -p "$BACKGROUND_DEST_DIR"; fi
 
 [ ! -f $BACKGROUND_DEST_PATH ] && cp $BACKGROUND_ORG_PATH $BACKGROUND_DEST_PATH
-gsettings set org.gnome.desktop.background picture-uri $BACKGROUND_DEST_PATH
-gsettings set org.gnome.desktop.background picture-uri-dark $BACKGROUND_DEST_PATH
+gsettings set org.gnome.desktop.background picture-uri "file://$BACKGROUND_DEST_PATH"
+gsettings set org.gnome.desktop.background picture-uri-dark "file://$BACKGROUND_DEST_PATH"
 gsettings set org.gnome.desktop.background picture-options 'zoom'

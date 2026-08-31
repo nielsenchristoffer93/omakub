@@ -23,7 +23,7 @@ if [[ -n "$languages" ]]; then
       mise use --global go@latest
       ;;
     PHP)
-      sudo apt -y install php php-{curl,apcu,intl,mbstring,opcache,pgsql,mysql,sqlite3,redis,xml,zip} --no-install-recommends
+      sudo apt -y install php php-{curl,apcu,intl,mbstring,pgsql,mysql,sqlite3,redis,xml,zip} --no-install-recommends
       php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
       php composer-setup.php --quiet && sudo mv composer.phar /usr/local/bin/composer
       rm composer-setup.php

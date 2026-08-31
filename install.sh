@@ -4,16 +4,24 @@
 set -e
 
 # Give people a chance to retry running the installation
-trap 'echo "Omakub installation failed! You can retry by running: source ~/.local/share/omakub/install.sh"' ERR
+trap 'echo -e "\n\e[31m[!] Omakub installation encountered an issue or was interrupted.\e[0m\nYou can resume or retry anytime by running:\n  bash $OMAKUB_PATH/install.sh\n"' ERR
+
+# Determine installation source and ensure ~/.local/share/omakub exists
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+if [ ! -d "$HOME/.local/share/omakub" ]; then
+  mkdir -p "$HOME/.local/share"
+  ln -s "$SCRIPT_DIR" "$HOME/.local/share/omakub"
+fi
+export OMAKUB_PATH="$HOME/.local/share/omakub"
 
 # Check the distribution name and version and abort if incompatible
-source ~/.local/share/omakub/install/check-version.sh
+source $OMAKUB_PATH/install/check-version.sh
 
 # Ask for app choices
 echo "Get ready to make a few choices..."
-source ~/.local/share/omakub/install/terminal/required/app-gum.sh >/dev/null
-source ~/.local/share/omakub/install/first-run-choices.sh
-source ~/.local/share/omakub/install/identification.sh
+source $OMAKUB_PATH/install/terminal/required/app-gum.sh >/dev/null
+source $OMAKUB_PATH/install/first-run-choices.sh
+source $OMAKUB_PATH/install/identification.sh
 
 # Desktop software and tweaks will only be installed if we're running Gnome
 if [[ "$XDG_CURRENT_DESKTOP" == *"GNOME"* ]]; then
@@ -24,15 +32,15 @@ if [[ "$XDG_CURRENT_DESKTOP" == *"GNOME"* ]]; then
   echo "Installing terminal and desktop tools..."
 
   # Install terminal tools
-  source ~/.local/share/omakub/install/terminal.sh
+  source $OMAKUB_PATH/install/terminal.sh
 
   # Install desktop tools and tweaks
-  source ~/.local/share/omakub/install/desktop.sh
+  source $OMAKUB_PATH/install/desktop.sh
 
   # Revert to normal idle and lock settings
   gsettings set org.gnome.desktop.screensaver lock-enabled true
   gsettings set org.gnome.desktop.session idle-delay 300
 else
   echo "Only installing terminal tools..."
-  source ~/.local/share/omakub/install/terminal.sh
+  source $OMAKUB_PATH/install/terminal.sh
 fi
