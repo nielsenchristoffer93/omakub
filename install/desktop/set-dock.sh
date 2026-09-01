@@ -8,6 +8,10 @@ apps=(
 	"code.desktop"
 	"WhatsApp.desktop"
 	"signal-desktop.desktop"
+	"slack_slack.desktop"
+	"slack.desktop"
+	"Microsoft Teams.desktop"
+	"discord.desktop"
 	"Zoom.desktop"
 	"spotify.desktop"
 	"steam.desktop"
@@ -28,6 +32,7 @@ installed_apps=()
 # Directory where .desktop files are typically stored
 desktop_dirs=(
 	"/var/lib/flatpak/exports/share/applications"
+	"/var/lib/snapd/desktop/applications"
 	"/usr/share/applications"
 	"/usr/local/share/applications"
 	"$HOME/.local/share/applications"

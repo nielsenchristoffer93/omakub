@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ $# -eq 0 ]; then
-	SUB=$(gum choose "Theme" "Font" "Screensaver" "Update" "Install" "Uninstall" "Manual" "Quit" --height 11 --header "" | tr '[:upper:]' '[:lower:]')
+	SUB=$(gum choose "Theme" "Font" "Screensaver" "Shortcuts" "Update" "Install" "Uninstall" "Manual" "Quit" --height 12 --header "" | tr '[:upper:]' '[:lower:]')
 else
 	SUB=$1
 fi

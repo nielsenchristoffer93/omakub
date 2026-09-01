@@ -1,4 +1,48 @@
 #!/bin/bash
 
+# Ensure OMAKUB_PATH is set
+export OMAKUB_PATH="${OMAKUB_PATH:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
+[ ! -d "$OMAKUB_PATH" ] && export OMAKUB_PATH="$HOME/.local/share/omakub"
+
+# Quick CLI commands
+if [ "$1" = "theme" ] && [ -n "$2" ]; then
+  THEME=$(echo "$2" | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g')
+  if [ -d "$OMAKUB_PATH/themes/$THEME" ]; then
+    cp "$OMAKUB_PATH/themes/$THEME/alacritty.toml" ~/.config/alacritty/theme.toml 2>/dev/null || true
+    cp "$OMAKUB_PATH/themes/$THEME/zellij.kdl" ~/.config/zellij/themes/$THEME.kdl 2>/dev/null || true
+    sed -i "s/theme \".*\"/theme \"$THEME\"/g" ~/.config/zellij/config.kdl 2>/dev/null || true
+    if [ -d "$HOME/.config/nvim" ]; then
+      cp "$OMAKUB_PATH/themes/$THEME/neovim.lua" ~/.config/nvim/lua/plugins/theme.lua 2>/dev/null || true
+    fi
+    if [ -f "$OMAKUB_PATH/themes/$THEME/btop.theme" ]; then
+      cp "$OMAKUB_PATH/themes/$THEME/btop.theme" ~/.config/btop/themes/$THEME.theme 2>/dev/null || true
+      sed -i "s/color_theme = \".*\"/color_theme = \"$THEME\"/g" ~/.config/btop/btop.conf 2>/dev/null || true
+    fi
+    source "$OMAKUB_PATH/themes/$THEME/gnome.sh"
+    source "$OMAKUB_PATH/themes/$THEME/tophat.sh"
+    source "$OMAKUB_PATH/themes/$THEME/vscode.sh"
+    echo "Switched Omakub theme to $THEME"
+    exit 0
+  else
+    echo "Theme '$2' not found. Available themes:"
+    ls -1 "$OMAKUB_PATH/themes" | grep -v "\.sh$"
+    exit 1
+  fi
+fi
+
+if [ "$1" = "update" ]; then
+  echo "Updating Omakub, system packages, and flatpaks..."
+  sudo apt update && sudo apt upgrade -y
+  command -v flatpak &>/dev/null && flatpak update -y
+  command -v snap &>/dev/null && sudo snap refresh
+  echo "All updates completed!"
+  exit 0
+fi
+
+if [ "$1" = "help" ] || [ "$1" = "shortcuts" ] || [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
+  source "$OMAKUB_PATH/bin/omakub-sub/shortcuts.sh"
+  exit 0
+fi
+
 source $OMAKUB_PATH/bin/omakub-sub/header.sh
 source $OMAKUB_PATH/bin/omakub-sub/menu.sh

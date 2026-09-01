@@ -4,14 +4,21 @@ CHOICES=(
   "Dev Editor        Install alternative programming editors"
   "Dev Language      Install programming language environment"
   "Dev Database      Install development database in Docker"
+  "Chat Apps         Install chat apps (WhatsApp, Signal, Slack, Teams, Discord)"
+  "Web Apps          Install web apps with their own icon and shell"
+  "TLP               Advanced laptop battery & power management"
   "Antigravity       Google DeepMind AI Coding Assistant & IDE"
   "Gemini            Google Gemini AI Assistant"
+  "Slack             Team communication and collaboration platform"
+  "Teams             Microsoft Teams for Linux"
+  "Signal            Private, encrypted messaging desktop app"
+  "WhatsApp          WhatsApp messaging web app"
+  "Discord           Communication platform for voice, video, and text messaging"
   "1password         Manage your passwords securely across devices"
   "Audacity          Record and edit audio"
   "ASDControl        Set brightness on Apple Studio and XDR displays"
   "Brave             Chrome-based browser with built-in ad blocking"
   "Dropbox           Sync files across computers with ease"
-  "Discord           Communication platform for voice, video, and text messaging"
   "Gimp              Image manipulation tool ala Photoshop"
   "Geekbench         CPU benchmaking tool"
   "Mainline Kernels  Install newer Linux kernels than Ubuntu defaults"
@@ -24,7 +31,6 @@ CHOICES=(
   "Tailscale         Mesh VPN based on WireGuard and with Magic DNS"
   "VirtualBox        Virtual machines to run Windows/Linux"
   "Zoom              Attend and host video chat meetings"
-  "Web Apps          Install web apps with their own icon and shell"
   "> All             Re-run any of the default installers"
   "<< Back           "
 )
@@ -46,9 +52,11 @@ else
 
   case "$INSTALLER" in
   "dev-editor") INSTALLER_FILE="$OMAKUB_PATH/bin/omakub-sub/install-dev-editor.sh" ;;
+  "chat-apps") INSTALLER_FILE="$OMAKUB_PATH/install/desktop/optional/select-chat-apps.sh" ;;
   "web-apps") INSTALLER_FILE="$OMAKUB_PATH/install/desktop/optional/select-web-apps.sh" ;;
   "dev-language") INSTALLER_FILE="$OMAKUB_PATH/install/terminal/select-dev-language.sh" ;;
   "dev-database") INSTALLER_FILE="$OMAKUB_PATH/install/terminal/select-dev-storage.sh" ;;
+  "tlp") INSTALLER_FILE="$OMAKUB_PATH/install/terminal/optional/app-tlp.sh" ;;
   "ollama") INSTALLER_FILE="$OMAKUB_PATH/install/terminal/optional/app-ollama.sh" ;;
   "tailscale") INSTALLER_FILE="$OMAKUB_PATH/install/terminal/optional/app-tailscale.sh" ;;
   "geekbench") INSTALLER_FILE="$OMAKUB_PATH/install/terminal/optional/app-geekbench.sh" ;;

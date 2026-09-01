@@ -1,20 +1,19 @@
 #!/bin/bash
 
+export OMAKUB_PATH="${OMAKUB_PATH:-$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)}"
+[ ! -d "$OMAKUB_PATH" ] && export OMAKUB_PATH="$HOME/.local/share/omakub"
+
 CONVERTER="$OMAKUB_PATH/bin/omakub-sub/screensaver-converter.py"
 LOGO_IMG="$OMAKUB_PATH/applications/icons/screensaver-logo.jpeg"
+[ ! -f "$LOGO_IMG" ] && LOGO_IMG="$OMAKUB_PATH/applications/icons/Omakub.png"
+
+# Read version directly from the version file in Omakub root
+VERSION="$(cat "$OMAKUB_PATH/version" 2>/dev/null | tr -d '[:space:]')"
+[ -z "$VERSION" ] && [ -f "$(dirname "${BASH_SOURCE[0]}")/version" ] && VERSION="$(cat "$(dirname "${BASH_SOURCE[0]}")/version" 2>/dev/null | tr -d '[:space:]')"
+
+# Shared dynamic gradient index (picks random palette or uses OMAKUB_GRADIENT)
+GRADIENT_INDEX="${OMAKUB_GRADIENT:-$((RANDOM % 6))}"
 
 if [ -f "$CONVERTER" ] && [ -f "$LOGO_IMG" ]; then
-  python3 "$CONVERTER" "$LOGO_IMG" 50 9 0 2>/dev/null
-else
-  cat << 'EOF'
-\033[38;2;168;85;247m                      ██          ██    ████\033[0m
-\033[38;2;147;93;246m                      ██          ██    ████\033[0m
-\033[38;2;126;101;246m ████ ██ ██ ██  ████  ██ ██ ██ ██ █████ ████\033[0m
-\033[38;2;106;108;246m███████████████ █████ █████ ██ ██ █████ ████\033[0m
-\033[38;2;85;116;246m██  ██ ██ ██ ██  █ ██ ████  ██ ██ ██ ██ ████\033[0m
-\033[38;2;64;127;245m██  ██ █  ██ ██ █████ ████  ██ ██ ██ ██ ████\033[0m
-\033[38;2;45;144;238m██  ██ █  ██ ██ ██ ██ ██ ██ ██ ██ ██ ██ ████\033[0m
-\033[38;2;25;169;227m ████  █  ██ ██ ████████ ██ █████ █████ ████\033[0m
-\033[38;2;6;182;212m                                        ████\033[0m
-EOF
+  python3 "$CONVERTER" "$LOGO_IMG" 54 9 "$GRADIENT_INDEX" "${VERSION:-2.0.0}" 2>/dev/null
 fi

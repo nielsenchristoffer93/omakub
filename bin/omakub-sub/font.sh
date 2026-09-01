@@ -20,7 +20,23 @@ set_font() {
 
 	gsettings set org.gnome.desktop.interface monospace-font-name "$font_name 10"
 	cp "$OMAKUB_PATH/configs/alacritty/fonts/$file_name.toml" ~/.config/alacritty/font.toml
-	sed -i "s/\"editor.fontFamily\": \".*\"/\"editor.fontFamily\": \"$font_name\"/g" ~/.config/Code/User/settings.json
+
+	EDITOR_SETTINGS=(
+		"$HOME/.config/Code/User/settings.json"
+		"$HOME/.config/Antigravity/User/settings.json"
+		"$HOME/.config/Antigravity IDE/User/settings.json"
+		"$HOME/.config/antigravity/User/settings.json"
+	)
+
+	for settings_file in "${EDITOR_SETTINGS[@]}"; do
+		if [ -f "$settings_file" ]; then
+			if grep -q "editor.fontFamily" "$settings_file" 2>/dev/null; then
+				sed -i "s/\"editor.fontFamily\": \".*\"/\"editor.fontFamily\": \"$font_name\"/g" "$settings_file"
+			else
+				sed -i "1s/^{/{\n  \"editor.fontFamily\": \"$font_name\",/" "$settings_file" 2>/dev/null || true
+			fi
+		fi
+	done
 }
 
 if [ "$#" -gt 1 ]; then

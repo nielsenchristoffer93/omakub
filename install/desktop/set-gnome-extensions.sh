@@ -27,7 +27,7 @@ EXTENSIONS=(
   "clipboard-history@alexsaveau.dev"
   "caffeine@patapon.info"
   "Vitals@CoreCoding.com"
-  "user-accent-colors@fabito02"
+  "auto-accent-colour@Wartybix"
   "compiz-alike-magic-lamp-effect@hermes83.github.com"
 )
 
@@ -57,6 +57,7 @@ gsettings set org.gnome.shell.extensions.just-perfection animation 2 2>/dev/null
 gsettings set org.gnome.shell.extensions.just-perfection dash-app-running true 2>/dev/null || true
 gsettings set org.gnome.shell.extensions.just-perfection workspace true 2>/dev/null || true
 gsettings set org.gnome.shell.extensions.just-perfection workspace-popup false 2>/dev/null || true
+gsettings set org.gnome.shell.extensions.just-perfection quick-settings-dark-mode false 2>/dev/null || true
 
 # Configure Blur My Shell
 gsettings set org.gnome.shell.extensions.blur-my-shell.appfolder blur false 2>/dev/null || true

@@ -5,6 +5,9 @@ if [[ "$XDG_CURRENT_DESKTOP" == *"GNOME"* ]]; then
   OPTIONAL_APPS=("1password" "Spotify" "Zoom" "Dropbox" "Antigravity")
   DEFAULT_OPTIONAL_APPS='1password,Spotify,Zoom,Antigravity'
   export OMAKUB_FIRST_RUN_OPTIONAL_APPS=$(gum choose "${OPTIONAL_APPS[@]}" --no-limit --selected $DEFAULT_OPTIONAL_APPS --height 8 --header "Select optional apps" | tr ' ' '-')
+
+  AVAILABLE_CHAT_APPS=("WhatsApp" "Signal" "Slack" "Microsoft Teams" "Discord")
+  export OMAKUB_FIRST_RUN_CHAT_APPS=$(gum choose "${AVAILABLE_CHAT_APPS[@]}" --no-limit --height 8 --header "Select chat apps")
 fi
 
 AVAILABLE_LANGUAGES=("Ruby on Rails" "Node.js" "Go" "PHP" "Python" "Elixir" "Rust" "Java")

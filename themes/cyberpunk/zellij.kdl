@@ -1,0 +1,15 @@
+themes {
+    cyberpunk {
+        fg "#00f0ff"
+        bg "#0d0e15"
+        black "#120e16"
+        red "#ff0055"
+        green "#05ffa1"
+        yellow "#fee801"
+        blue "#00f0ff"
+        magenta "#ff007f"
+        cyan "#00f0ff"
+        white "#e5e9f0"
+        orange "#ff7700"
+    }
+}
