@@ -13,7 +13,9 @@ elif [ -f "$CONFIG_DIR/image_path" ]; then
 fi
 
 if [ -z "$IMAGE_PATH" ] || [ ! -f "$IMAGE_PATH" ]; then
-  IMAGE_PATH="$OMAKUB_DIR/applications/icons/screensaver-logo.jpeg"
+  IMAGE_PATH="$OMAKUB_DIR/applications/icons/screensaver-logo.txt"
+  [ ! -f "$IMAGE_PATH" ] && IMAGE_PATH="$OMAKUB_DIR/applications/icons/logo.txt"
+  [ ! -f "$IMAGE_PATH" ] && IMAGE_PATH="$OMAKUB_DIR/applications/icons/screensaver-logo.jpeg"
   [ ! -f "$IMAGE_PATH" ] && IMAGE_PATH="$OMAKUB_DIR/applications/icons/Omakub.png"
 fi
 
@@ -72,16 +74,20 @@ while true; do
 
   COLS=$(tput cols 2>/dev/null || echo 80)
   LINES=$(tput lines 2>/dev/null || echo 24)
-  MAX_W=$((COLS * 36 / 100))
-  [ "$MAX_W" -gt 54 ] && MAX_W=54
+  MAX_W=$((COLS * 60 / 100))
+  [ "$MAX_W" -gt 68 ] && MAX_W=68
   [ "$MAX_W" -lt 36 ] && MAX_W=36
 
-  MAX_H=$((LINES * 20 / 100))
-  [ "$MAX_H" -gt 9 ] && MAX_H=9
-  [ "$MAX_H" -lt 6 ] && MAX_H=6
+  MAX_H=$((LINES * 55 / 100))
+  [ "$MAX_H" -gt 22 ] && MAX_H=22
+  [ "$MAX_H" -lt 8 ] && MAX_H=8
 
-  # Generate ASCII Art using solid Omarchy blocks █ with multi-color gradient
-  ASCII_ART=$(python3 "$CONVERTER" "$IMAGE_PATH" "$MAX_W" "$MAX_H" "$GRADIENT_INDEX" 2>/dev/null)
+  # Rotate gradient angle dynamically across cycles (0, 45, 90, 135, 180, 225, 270, 315, radial, radial-inv)
+  ANGLES=(0 45 90 135 180 225 270 315 "radial" "radial-inv")
+  CURRENT_ANGLE="${ANGLES[$((GRADIENT_INDEX % ${#ANGLES[@]}))]}"
+
+  # Generate ASCII Art with rotating multi-color gradient
+  ASCII_ART=$(python3 "$CONVERTER" "$IMAGE_PATH" "$MAX_W" "$MAX_H" "$GRADIENT_INDEX" "" "$CURRENT_ANGLE" 2>/dev/null)
   [ -z "$ASCII_ART" ] && ASCII_ART="██████"
 
   GRADIENT_INDEX=$((GRADIENT_INDEX + 1))

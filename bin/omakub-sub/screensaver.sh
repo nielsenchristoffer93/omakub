@@ -42,15 +42,17 @@ show_preview() {
   clear
   COLS=$(tput cols 2>/dev/null || echo 80)
   LINES=$(tput lines 2>/dev/null || echo 24)
-  MAX_W=$((COLS * 36 / 100))
-  [ "$MAX_W" -gt 54 ] && MAX_W=54
+  MAX_W=$((COLS * 60 / 100))
+  [ "$MAX_W" -gt 68 ] && MAX_W=68
   [ "$MAX_W" -lt 36 ] && MAX_W=36
 
-  MAX_H=$((LINES * 20 / 100))
-  [ "$MAX_H" -gt 9 ] && MAX_H=9
-  [ "$MAX_H" -lt 6 ] && MAX_H=6
+  MAX_H=$((LINES * 55 / 100))
+  [ "$MAX_H" -gt 22 ] && MAX_H=22
+  [ "$MAX_H" -lt 8 ] && MAX_H=8
 
-  IMG="$OMAKUB_DIR/applications/icons/screensaver-logo.jpeg"
+  IMG="$OMAKUB_DIR/applications/icons/screensaver-logo.txt"
+  [ ! -f "$IMG" ] && IMG="$OMAKUB_DIR/applications/icons/logo.txt"
+  [ ! -f "$IMG" ] && IMG="$OMAKUB_DIR/applications/icons/screensaver-logo.jpeg"
   [ ! -f "$IMG" ] && IMG="$OMAKUB_DIR/applications/icons/Omakub.png"
   if [ -f "$CONFIG_DIR/image_path" ]; then
     SAVED_PATH=$(cat "$CONFIG_DIR/image_path")
@@ -73,14 +75,14 @@ show_preview() {
   done <<< "$ASCII_ART"
 
   echo ""
-  gum style --foreground 240 --align center --width "$COLS" "Image: $(basename "$IMG")  •  Press any key to return..."
+  gum style --foreground 240 --align center --width "$COLS" "Logo: $(basename "$IMG")  •  Press any key to return..."
   read -n 1 -s
 }
 
 CHOICES=(
   "Start Screensaver"
   "Preview Logo"
-  "Choose Custom Image"
+  "Choose Custom Logo (Image / ASCII)"
   "Set Idle Timeout (Current: $IDLE_LABEL)"
   "Lock Screen on Wake (Current: $LOCK_LABEL)"
   "Reset to Default Logo"
@@ -100,7 +102,7 @@ elif [ "$CHOICE" = "Start Screensaver" ]; then
     -e bash -c "source '$RUNNER'"
 elif [ "$CHOICE" = "Preview Logo" ]; then
   show_preview
-elif [ "$CHOICE" = "Choose Custom Image" ]; then
+elif [[ "$CHOICE" == "Choose Custom Logo"* ]] || [ "$CHOICE" = "Choose Custom Image" ]; then
   current_dir="$HOME"
   [ -d "$HOME/Pictures" ] && current_dir="$HOME/Pictures"
 
@@ -120,6 +122,8 @@ elif [ "$CHOICE" = "Choose Custom Image" ]; then
         base=$(basename "$f")
         if [[ "$base" =~ \.(png|jpg|jpeg|webp|svg|bmp|gif|PNG|JPG|JPEG|WEBP|SVG|BMP|GIF)$ ]]; then
           items+=("🖼️  $base")
+        elif [[ "$base" =~ \.(txt|ascii|art|ans|nfo|TXT|ASCII|ART|ANS|NFO)$ ]]; then
+          items+=("📄  $base")
         fi
       fi
     done
@@ -133,7 +137,7 @@ elif [ "$CHOICE" = "Choose Custom Image" ]; then
     elif [ "$file_choice" = ".. (Go up)" ]; then
       current_dir=$(dirname "$current_dir")
     elif [ "$file_choice" = "🔍 Search with FZF" ]; then
-      selected_fzf=$(find "$HOME" -maxdepth 4 -type f \( -iname "*.png" -o -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.webp" -o -iname "*.svg" \) 2>/dev/null | fzf --header="Type to filter images (Enter to select, Esc to cancel)")
+      selected_fzf=$(find "$HOME" -maxdepth 4 -type f \( -iname "*.png" -o -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.webp" -o -iname "*.svg" -o -iname "*.txt" -o -iname "*.ascii" -o -iname "*.art" \) 2>/dev/null | fzf --header="Type to filter images & ASCII files (Enter to select, Esc to cancel)")
       if [ -n "$selected_fzf" ] && [ -f "$selected_fzf" ]; then
         echo "$selected_fzf" > "$CONFIG_DIR/image_path"
         show_preview
@@ -143,8 +147,8 @@ elif [ "$CHOICE" = "Choose Custom Image" ]; then
       folder_name="${file_choice#📁 }"
       folder_name="${folder_name%/}"
       current_dir="$current_dir/$folder_name"
-    elif [[ "$file_choice" == 🖼️* ]]; then
-      file_name="${file_choice#🖼️  }"
+    elif [[ "$file_choice" == 🖼️* ]] || [[ "$file_choice" == 📄* ]]; then
+      file_name="${file_choice:4}"
       echo "$current_dir/$file_name" > "$CONFIG_DIR/image_path"
       show_preview
       break

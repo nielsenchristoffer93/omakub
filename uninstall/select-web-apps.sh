@@ -2,13 +2,19 @@
 
 source $OMAKUB_PATH/defaults/bash/functions
 
-AVAILABLE_WEB_APPS=("Gemini" "Chat GPT" "Google Photos" "Google Contacts" "Tailscale")
-apps=$(gum choose "${AVAILABLE_WEB_APPS[@]}" --no-limit --height 7 --header "Select web apps to uninstall")
+AVAILABLE_WEB_APPS=("HEY" "Basecamp" "Gemini" "Chat GPT" "Google Photos" "Google Contacts" "Tailscale")
+apps=$(gum choose "${AVAILABLE_WEB_APPS[@]}" --no-limit --height 9 --header "Select web apps to uninstall")
 
 if [[ -n "$apps" ]]; then
   IFS=$'\n'
   for app in $apps; do
     case $app in
+    "HEY")
+      source "$OMAKUB_PATH/uninstall/app-hey.sh"
+      ;;
+    "Basecamp")
+      source "$OMAKUB_PATH/uninstall/app-basecamp.sh"
+      ;;
     "Gemini")
       web2app-remove 'Gemini'
       app2folder-remove 'Gemini.desktop' WebApps

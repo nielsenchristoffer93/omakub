@@ -8,8 +8,10 @@ CHOICES=(
   "Dev Database      Install development database in Docker"
   "Chat Apps         Install chat apps (WhatsApp, Signal, Slack, Teams, Discord)"
   "Web Apps          Install web apps with their own icon and shell"
+  "HEY               HEY Email & Calendar web app"
+  "Basecamp          Basecamp Project Management web app"
   "TLP               Advanced laptop battery & power management"
-  "Antigravity       Google DeepMind AI Coding Assistant & IDE"
+  "Antigravity       Google DeepMind AI Coding Agent CLI (agy)"
   "Gemini            Google Gemini AI Assistant"
   "Slack             Team communication and collaboration platform"
   "Teams             Microsoft Teams for Linux"
@@ -53,6 +55,7 @@ else
 
   case "$INSTALLER" in
   "opencode") INSTALLER_FILE="$OMAKUB_PATH/install/terminal/optional/app-opencode.sh" ;;
+  "antigravity") INSTALLER_FILE="$OMAKUB_PATH/install/terminal/optional/app-antigravity.sh" ;;
   "dev-editor") INSTALLER_FILE="$OMAKUB_PATH/bin/omakub-sub/install-dev-editor.sh" ;;
   "chat-apps") INSTALLER_FILE="$OMAKUB_PATH/install/desktop/optional/select-chat-apps.sh" ;;
   "web-apps") INSTALLER_FILE="$OMAKUB_PATH/install/desktop/optional/select-web-apps.sh" ;;

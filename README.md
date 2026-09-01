@@ -127,12 +127,14 @@ Omakub configures sensible, ergonomic keybindings so your hands rarely have to l
 | <kbd>Ctrl</kbd> + <kbd>t</kbd> | **Tab Mode**: <kbd>n</kbd> = new tab, <kbd>x</kbd> = close tab, <kbd>1</kbd>–<kbd>9</kbd> = switch tab |
 | <kbd>Ctrl</kbd> + <kbd>s</kbd> | **Scrollback & Search Mode** (Search terminal output history) |
 
-### 🤖 OpenCode AI in Neovim (LazyVim)
+### 🤖 AI Coding Agents in Neovim (LazyVim)
 | Shortcut | Action |
 |---|---|
+| <kbd>&lt;leader&gt;</kbd> + <kbd>a</kbd> + <kbd>a</kbd> / <kbd>g</kbd> | Toggle **Antigravity AI Agent** (Floating popup) |
+| <kbd>&lt;leader&gt;</kbd> + <kbd>a</kbd> + <kbd>A</kbd> | Toggle **Antigravity Sidebar** (Right split) |
 | <kbd>&lt;leader&gt;</kbd> + <kbd>a</kbd> + <kbd>o</kbd> | Toggle **OpenCode AI Agent** (Floating popup) |
 | <kbd>&lt;leader&gt;</kbd> + <kbd>a</kbd> + <kbd>s</kbd> | Toggle **OpenCode Sidebar** (Right split) |
-| <kbd>&lt;leader&gt;</kbd> + <kbd>a</kbd> + <kbd>a</kbd> | Toggle **OpenCode Terminal** (Bottom panel) |
+| <kbd>&lt;leader&gt;</kbd> + <kbd>a</kbd> + <kbd>b</kbd> | Toggle **OpenCode Bottom Panel** (Bottom panel) |
 
 ### 📸 Screenshots & System
 | Shortcut | Action |

@@ -29,8 +29,9 @@ if [ ! -d "$HOME/.config/nvim" ]; then
   # Turn off animated scrolling
   cp ~/.local/share/omakub/configs/neovim/snacks-animated-scrolling-off.lua ~/.config/nvim/lua/plugins/
 
-  # OpenCode AI agent integration & autoread
-  cp ~/.local/share/omakub/configs/neovim/opencode.lua ~/.config/nvim/lua/plugins/
+  # OpenCode & Antigravity AI agent integration
+  cp ~/.local/share/omakub/configs/neovim/opencode.lua ~/.config/nvim/lua/plugins/ 2>/dev/null || true
+  cp ~/.local/share/omakub/configs/neovim/antigravity.lua ~/.config/nvim/lua/plugins/ 2>/dev/null || true
 
   # Turn off relative line numbers
   echo "vim.opt.relativenumber = false" >>~/.config/nvim/lua/config/options.lua

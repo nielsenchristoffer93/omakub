@@ -25,7 +25,7 @@ while true; do
     "Window Management & Tiling" \
     "App Launching & Dock" \
     "Workspaces & Navigation" \
-    "OpenCode AI in Neovim" \
+    "AI Coding in Neovim" \
     "Terminal & Zellij Shortcuts" \
     "Screenshots & System Controls" \
     "Omakub CLI Commands" \
@@ -69,12 +69,14 @@ while true; do
 • Super + Shift + 1..6 Move active window to specific workspace"
     ;;
 
-  "OpenCode AI in Neovim"*)
-    show_category "OPENCODE AI IN NEOVIM (LAZYVIM)" \
-"• <leader>ao          Toggle OpenCode AI Agent (Floating popup)
+  "AI Coding in Neovim"*)
+    show_category "AI CODING IN NEOVIM (LAZYVIM)" \
+"• <leader>aa / ag     Toggle Antigravity AI Agent (Floating popup)
+• <leader>aA          Toggle Antigravity AI Agent (Right sidebar)
+• <leader>ao          Toggle OpenCode AI Agent (Floating popup)
 • <leader>as          Toggle OpenCode AI Agent (Right sidebar)
-• <leader>aa          Toggle OpenCode AI Agent (Bottom panel)
-• Autoread            Buffers reload automatically when OpenCode edits files"
+• <leader>ab          Toggle OpenCode AI Agent (Bottom panel)
+• Autoread            Buffers reload automatically when AI agents edit files"
     ;;
 
   "Terminal & Zellij Shortcuts"*)
@@ -127,10 +129,12 @@ Alt + 1..9          Switch to dock app 1..9
 Shift + Alt + 1     Open NEW Chrome window
 Shift + Alt + 2     Open NEW Alacritty window
 
-# OPENCODE AI (LazyVim)
+# AI AGENTS (LazyVim)
+<leader>aa / ag     Toggle Antigravity (Floating popup)
+<leader>aA          Toggle Antigravity (Right sidebar)
 <leader>ao          Toggle OpenCode (Floating popup)
 <leader>as          Toggle OpenCode (Right sidebar)
-<leader>aa          Toggle OpenCode (Bottom panel)
+<leader>ab          Toggle OpenCode (Bottom panel)
 
 # WORKSPACES
 Super + 1..6        Switch to workspace 1..6

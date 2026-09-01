@@ -49,7 +49,7 @@ return {
         desc = "Toggle OpenCode Sidebar",
       },
       {
-        "<leader>aa",
+        "<leader>ab",
         function()
           local cmd = vim.fn.executable("opencode") == 1 and "opencode" or nil
           if cmd then
@@ -58,7 +58,7 @@ return {
                 position = "bottom",
                 height = 0.40,
                 border = "top",
-                title = " OpenCode Terminal ",
+                title = " OpenCode Bottom Panel ",
                 title_pos = "center",
               },
             })
