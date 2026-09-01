@@ -10,7 +10,7 @@ if [ "$1" = "theme" ] && [ -n "$2" ]; then
   if [ -d "$OMAKUB_PATH/themes/$THEME" ]; then
     cp "$OMAKUB_PATH/themes/$THEME/alacritty.toml" ~/.config/alacritty/theme.toml 2>/dev/null || true
     cp "$OMAKUB_PATH/themes/$THEME/zellij.kdl" ~/.config/zellij/themes/$THEME.kdl 2>/dev/null || true
-    sed -i "s/theme \".*\"/theme \"$THEME\"/g" ~/.config/zellij/config.kdl 2>/dev/null || true
+    sed -i -E "s|^// *theme \".*\"|theme \"$THEME\"|g; s|^theme \".*\"|theme \"$THEME\"|g" ~/.config/zellij/config.kdl 2>/dev/null || true
     if [ -d "$HOME/.config/nvim" ]; then
       cp "$OMAKUB_PATH/themes/$THEME/neovim.lua" ~/.config/nvim/lua/plugins/theme.lua 2>/dev/null || true
     fi
@@ -39,10 +39,9 @@ if [ "$1" = "update" ]; then
   exit 0
 fi
 
-if [ "$1" = "help" ] || [ "$1" = "shortcuts" ] || [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
+if [ "$1" = "shortcuts" ] || [ "$1" = "help" ]; then
   source "$OMAKUB_PATH/bin/omakub-sub/shortcuts.sh"
   exit 0
 fi
 
-source $OMAKUB_PATH/bin/omakub-sub/header.sh
-source $OMAKUB_PATH/bin/omakub-sub/menu.sh
+source "$OMAKUB_PATH/bin/omakub-sub/menu.sh"
