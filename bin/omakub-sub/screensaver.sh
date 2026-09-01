@@ -42,8 +42,13 @@ show_preview() {
   clear
   COLS=$(tput cols 2>/dev/null || echo 80)
   LINES=$(tput lines 2>/dev/null || echo 24)
-  MAX_W=$((COLS * 55 / 100))
-  MAX_H=$((LINES * 45 / 100))
+  MAX_W=$((COLS * 36 / 100))
+  [ "$MAX_W" -gt 54 ] && MAX_W=54
+  [ "$MAX_W" -lt 36 ] && MAX_W=36
+
+  MAX_H=$((LINES * 20 / 100))
+  [ "$MAX_H" -gt 9 ] && MAX_H=9
+  [ "$MAX_H" -lt 6 ] && MAX_H=6
 
   IMG="$OMAKUB_DIR/applications/icons/screensaver-logo.jpeg"
   [ ! -f "$IMG" ] && IMG="$OMAKUB_DIR/applications/icons/Omakub.png"
