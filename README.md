@@ -172,12 +172,6 @@ Omakub configures sensible, ergonomic keybindings so your hands rarely have to l
 
 ---
 
-## 🤝 Contributing
-
-Contributions, bug reports, and suggestions are welcome! Feel free to open an issue or pull request on [GitHub](https://github.com/nielsenchristoffer93/omakub).
-
----
-
 ## 📜 License
 
 Omakub is open-source software released under the [MIT License](LICENSE.md).
