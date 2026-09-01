@@ -92,8 +92,9 @@ while true; do
     [ "$EFFECT" != "$LAST_EFFECT" ] && { LAST_EFFECT="$EFFECT"; break; }
   done
 
-  # Run animation
+  # Run animation at higher framerate for faster, snappier effects
   echo "$ASCII_ART" | tte \
+    --frame-rate 100 \
     --existing-color-handling always \
     --canvas-width 0 \
     --canvas-height 0 \
@@ -105,8 +106,8 @@ while true; do
 
   tput civis 2>/dev/null || true
 
-  # Hold result for 3 seconds between effects
-  sleep 3 &
+  # Hold result for 1.5 seconds between effects
+  sleep 1.5 &
   wait $! 2>/dev/null || true
 
   clear
