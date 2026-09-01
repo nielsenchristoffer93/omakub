@@ -2,8 +2,8 @@
 
 # Only ask for default desktop app choices when running Gnome
 if [[ "$XDG_CURRENT_DESKTOP" == *"GNOME"* ]]; then
-  OPTIONAL_APPS=("1password" "Spotify" "Zoom" "Dropbox" "Antigravity")
-  DEFAULT_OPTIONAL_APPS='1password,Spotify,Zoom,Antigravity'
+  OPTIONAL_APPS=("1password" "Spotify" "Zoom" "Dropbox" "Antigravity" "OpenCode")
+  DEFAULT_OPTIONAL_APPS='1password,Spotify,Zoom,Antigravity,OpenCode'
   export OMAKUB_FIRST_RUN_OPTIONAL_APPS=$(gum choose "${OPTIONAL_APPS[@]}" --no-limit --selected $DEFAULT_OPTIONAL_APPS --height 8 --header "Select optional apps" | tr ' ' '-')
 
   AVAILABLE_CHAT_APPS=("WhatsApp" "Signal" "Slack" "Microsoft Teams" "Discord")

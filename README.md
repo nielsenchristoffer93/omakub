@@ -48,6 +48,12 @@ No forced installations. Choose exactly which communication tools you want durin
 * **Signal Desktop** (Official APT repository)
 * **WhatsApp** (PWA Web App)
 
+### 🤖 OpenCode AI Agent Integration
+Pre-configured with [OpenCode](https://opencode.ai), the open-source, model-agnostic terminal coding agent:
+* **Multi-Model Flexibility**: Connect your API keys or local **Ollama** models to run **Claude 3.7**, **GPT-4o**, **Gemini 2.5 Pro**, or **DeepSeek R1**.
+* **Embedded in Neovim**: Instant floating popup (<kbd>&lt;leader&gt;</kbd> + <kbd>a</kbd> + <kbd>o</kbd>) or sidebar (<kbd>&lt;leader&gt;</kbd> + <kbd>a</kbd> + <kbd>s</kbd>) with automatic buffer reloading (`autoread`).
+* **Easy Installation**: Install via `omakub` menu or `curl -fsSL https://opencode.ai/install | bash`.
+
 ### 📺 Interactive Terminal Screensaver
 An eye-catching screensaver for your terminal powered by [`terminaltexteffects`](https://github.com/ChrisBuilds/terminaltexteffects):
 * **Dynamic Multi-Stop Gradient ASCII Art**: Automatically downsamples pixel art logos with crisp aspect ratio and color cycling.
@@ -120,6 +126,13 @@ Omakub configures sensible, ergonomic keybindings so your hands rarely have to l
 | <kbd>Ctrl</kbd> + <kbd>p</kbd> | **Pane Mode**: <kbd>n</kbd> = new split, <kbd>d</kbd> = split down, <kbd>r</kbd> = split right, <kbd>x</kbd> = close, <kbd>f</kbd> = zoom |
 | <kbd>Ctrl</kbd> + <kbd>t</kbd> | **Tab Mode**: <kbd>n</kbd> = new tab, <kbd>x</kbd> = close tab, <kbd>1</kbd>–<kbd>9</kbd> = switch tab |
 | <kbd>Ctrl</kbd> + <kbd>s</kbd> | **Scrollback & Search Mode** (Search terminal output history) |
+
+### 🤖 OpenCode AI in Neovim (LazyVim)
+| Shortcut | Action |
+|---|---|
+| <kbd>&lt;leader&gt;</kbd> + <kbd>a</kbd> + <kbd>o</kbd> | Toggle **OpenCode AI Agent** (Floating popup) |
+| <kbd>&lt;leader&gt;</kbd> + <kbd>a</kbd> + <kbd>s</kbd> | Toggle **OpenCode Sidebar** (Right split) |
+| <kbd>&lt;leader&gt;</kbd> + <kbd>a</kbd> + <kbd>a</kbd> | Toggle **OpenCode Terminal** (Bottom panel) |
 
 ### 📸 Screenshots & System
 | Shortcut | Action |

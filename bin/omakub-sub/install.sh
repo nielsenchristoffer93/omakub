@@ -1,6 +1,8 @@
 #!/bin/bash
 
 CHOICES=(
+  "OpenCode          Multi-model AI coding agent (Claude, GPT-4o, Gemini, DeepSeek)"
+  "Ollama            Run open-source LLMs, like Llama3, locally"
   "Dev Editor        Install alternative programming editors"
   "Dev Language      Install programming language environment"
   "Dev Database      Install development database in Docker"
@@ -24,7 +26,6 @@ CHOICES=(
   "Mainline Kernels  Install newer Linux kernels than Ubuntu defaults"
   "Minecraft         Everyone's favorite blocky building game"
   "OBS Studio        Record screencasts with inputs from both display + webcam"
-  "Ollama            Run LLMs, like Meta's Llama3, locally"
   "Retroarch         Play retro games"
   "Spotify           Stream music from the world's most popular service"
   "Steam             Play games from Valve's store"
@@ -51,6 +52,7 @@ else
   INSTALLER=$(echo "$CHOICE" | awk -F ' {2,}' '{print $1}' | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g')
 
   case "$INSTALLER" in
+  "opencode") INSTALLER_FILE="$OMAKUB_PATH/install/terminal/optional/app-opencode.sh" ;;
   "dev-editor") INSTALLER_FILE="$OMAKUB_PATH/bin/omakub-sub/install-dev-editor.sh" ;;
   "chat-apps") INSTALLER_FILE="$OMAKUB_PATH/install/desktop/optional/select-chat-apps.sh" ;;
   "web-apps") INSTALLER_FILE="$OMAKUB_PATH/install/desktop/optional/select-web-apps.sh" ;;

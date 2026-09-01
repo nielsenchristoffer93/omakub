@@ -25,13 +25,14 @@ while true; do
     "🪟  Window Management & Tiling" \
     "🚀  App Launching & Dock" \
     "🧭  Workspaces & Navigation" \
+    "🤖  OpenCode AI in Neovim" \
     "⌨️   Terminal & Zellij Shortcuts" \
     "📸  Screenshots & System Controls" \
     "🛠️   Omakub CLI Commands" \
     "📋  View All Shortcuts (Cheatsheet)" \
     "🌐  Open Online Web Manual" \
     "<< Back" \
-    --height 13 \
+    --height 14 \
     --header "Omakub Keyboard Shortcuts & Help")
 
   case "$CHOICE" in
@@ -42,7 +43,7 @@ while true; do
                        (Hold Shift + letters to span multiple grid cells)
 • Super + W           Close active window
 • Super + Up          Maximize / unmaximize window
-• Super + Left/Right  Snap window to left / right half
+• Super + Left/Right  Snap window left/right half
 • Super + Backspace   Interactive window resize mode
 • Shift + F11         Toggle fullscreen with title bar
 • F11                 Toggle fullscreen (Terminal / Alacritty)"
@@ -66,6 +67,14 @@ while true; do
 • Super + Shift + Up   Move active window to workspace above
 • Super + Shift + Down Move active window to workspace below
 • Super + Shift + 1..6 Move active window to specific workspace"
+    ;;
+
+  "🤖  OpenCode AI in Neovim"*)
+    show_category "🤖 OPENCODE AI IN NEOVIM (LAZYVIM)" \
+"• <leader>ao          Toggle OpenCode AI Agent (Floating popup)
+• <leader>as          Toggle OpenCode AI Agent (Right sidebar)
+• <leader>aa          Toggle OpenCode AI Agent (Bottom panel)
+• Autoread            Buffers reload automatically when OpenCode edits files"
     ;;
 
   "⌨️   Terminal & Zellij Shortcuts"*)
@@ -117,6 +126,11 @@ Super + Space       Ulauncher app search & calculator
 Alt + 1..9          Switch to dock app 1..9
 Shift + Alt + 1     Open NEW Chrome window
 Shift + Alt + 2     Open NEW Alacritty window
+
+# 🤖 OPENCODE AI (LazyVim)
+<leader>ao          Toggle OpenCode (Floating popup)
+<leader>as          Toggle OpenCode (Right sidebar)
+<leader>aa          Toggle OpenCode (Bottom panel)
 
 # 🧭 WORKSPACES
 Super + 1..6        Switch to workspace 1..6
