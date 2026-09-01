@@ -44,4 +44,5 @@ if [ "$1" = "shortcuts" ] || [ "$1" = "help" ]; then
   exit 0
 fi
 
+source "$OMAKUB_PATH/bin/omakub-sub/header.sh"
 source "$OMAKUB_PATH/bin/omakub-sub/menu.sh"
