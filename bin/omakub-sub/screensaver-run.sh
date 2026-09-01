@@ -28,13 +28,13 @@ CONVERTER="$OMAKUB_DIR/bin/omakub-sub/screensaver-converter.py"
 
 EFFECTS=(
   "beams" "binarypath" "blackhole" "bouncyballs" "bubbles"
-  "burn" "colorshift" "crumble" "decrypt" "errorcorrect"
-  "expand" "fireworks" "highlight" "laseretch" "matrix"
-  "middleout" "orbittingvolley" "overflow" "pour" "print"
-  "rain" "randomsequence" "rings" "scattered" "slice"
-  "slide" "smoke" "spotlights" "spray" "swarm"
-  "sweep" "synthgrid" "thunderstorm" "unstable" "vhstape"
-  "waves" "wipe"
+  "burn" "colorshift" "crumble" "decrypt" "decrypt --typing-speed 3"
+  "errorcorrect" "expand" "fireworks" "highlight" "laseretch"
+  "matrix" "matrix --rain-time 8" "middleout" "orbittingvolley"
+  "overflow" "pour" "print" "rain" "randomsequence" "rings"
+  "scattered" "slice" "slide" "smoke" "spotlights" "spray"
+  "swarm" "sweep" "synthgrid" "synthgrid --max-active-blocks 0.2"
+  "thunderstorm" "unstable" "vhstape" "waves" "wipe"
 )
 
 # Restore terminal on exit
@@ -92,9 +92,9 @@ while true; do
     [ "$EFFECT" != "$LAST_EFFECT" ] && { LAST_EFFECT="$EFFECT"; break; }
   done
 
-  # Run animation at higher framerate for faster, snappier effects
+  # Run animation at 80 fps
   echo "$ASCII_ART" | tte \
-    --frame-rate 100 \
+    --frame-rate 80 \
     --existing-color-handling always \
     --canvas-width 0 \
     --canvas-height 0 \
@@ -102,7 +102,7 @@ while true; do
     --anchor-text c \
     --no-eol \
     --no-restore-cursor \
-    "$EFFECT" 2>/dev/null || true
+    $EFFECT 2>/dev/null || true
 
   tput civis 2>/dev/null || true
 
