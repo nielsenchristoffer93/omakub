@@ -40,25 +40,27 @@ Switch your entire desktop aesthetic across the OS, terminal, system monitor, an
   * Seamlessly syncs themes and font sizes across **VS Code** and **Antigravity IDE**.
   * Instantly restyles **Neovim**, **Alacritty**, **Zellij**, **Btop**, and GNOME system accents.
 
-### 💬 Modular Chat Applications
-No forced installations. Choose exactly which communication tools you want during initial setup or later via the Omakub menu:
+### 💬 Modular Communication & Web Applications
+No forced installations. All chat and web applications are strictly optional. Choose exactly which tools you want during initial setup or later via the Omakub menu:
 * **Slack** (Native Snap)
 * **Microsoft Teams** (PWA Web App)
 * **Discord** (.deb desktop app)
 * **Signal Desktop** (Official APT repository)
 * **WhatsApp** (PWA Web App)
+* **HEY** (Email & Calendar PWA Web App)
+* **Basecamp** (Project Management PWA Web App)
 
-### 🤖 OpenCode AI Agent Integration
-Pre-configured with [OpenCode](https://opencode.ai), the open-source, model-agnostic terminal coding agent:
-* **Multi-Model Flexibility**: Connect your API keys or local **Ollama** models to run **Claude 3.7**, **GPT-4o**, **Gemini 2.5 Pro**, or **DeepSeek R1**.
-* **Embedded in Neovim**: Instant floating popup (<kbd>&lt;leader&gt;</kbd> + <kbd>a</kbd> + <kbd>o</kbd>) or sidebar (<kbd>&lt;leader&gt;</kbd> + <kbd>a</kbd> + <kbd>s</kbd>) with automatic buffer reloading (`autoread`).
-* **Easy Installation**: Install via `omakub` menu or `curl -fsSL https://opencode.ai/install | bash`.
+### 🤖 Integrated AI Coding Agents (Antigravity & OpenCode)
+Pre-configured with dedicated LazyVim plugins for both Google DeepMind's **Antigravity CLI** and [OpenCode](https://opencode.ai):
+* **Antigravity CLI (`agy`)**: High-performance terminal coding agent with floating popup (<kbd>&lt;leader&gt;</kbd> + <kbd>a</kbd> + <kbd>a</kbd> / <kbd>g</kbd>) or right split sidebar (<kbd>&lt;leader&gt;</kbd> + <kbd>a</kbd> + <kbd>A</kbd>).
+* **OpenCode Agent**: Multi-model terminal agent connecting Claude 3.7, GPT-4o, Gemini 2.5 Pro, DeepSeek R1, or local Ollama models with popup (<kbd>&lt;leader&gt;</kbd> + <kbd>a</kbd> + <kbd>o</kbd>), sidebar (<kbd>&lt;leader&gt;</kbd> + <kbd>a</kbd> + <kbd>s</kbd>), or bottom panel (<kbd>&lt;leader&gt;</kbd> + <kbd>a</kbd> + <kbd>b</kbd>).
+* **Modular Neovim Specs**: Cleanly separated into `configs/neovim/antigravity.lua` and `configs/neovim/opencode.lua` with automatic buffer reloading (`autoread`).
 
 ### 📺 Interactive Terminal Screensaver
 An eye-catching screensaver for your terminal powered by [`terminaltexteffects`](https://github.com/ChrisBuilds/terminaltexteffects):
-* **Dynamic Multi-Stop Gradient ASCII Art**: Automatically downsamples pixel art logos with crisp aspect ratio and color cycling.
-* **Over 30 Particle Animations**: Rain, beams, synthgrid, decrypt, blackhole, colorshift, and more.
-* **Configurable**: Set custom image, idle timeout (2m–30m), and optional desktop lock-on-wake.
+* **Dynamic Multi-Stop Gradient ASCII Art**: Automatically converts images (`.png`, `.jpg`) or raw ASCII art (`.txt`, `.ascii`) with aspect-ratio preservation and rotating gradients (0°–360° and radial).
+* **Over 30 Particle Animations**: Rain, beams, synthgrid, decrypt, blackhole, colorshift, and more running at 80fps.
+* **Configurable**: Choose custom image/ASCII art, idle timeout (2m–30m), and optional desktop lock-on-wake.
 * **Instant Start**: Launch via `omakub -> Screensaver` or search **Screensaver** in your application launcher.
 
 ### ⌨️ Omakub CLI & Quick Commands
@@ -151,9 +153,9 @@ Omakub configures sensible, ergonomic keybindings so your hands rarely have to l
 | Category | Tools |
 |---|---|
 | **Terminal & Shell** | Alacritty, Zellij, Bash, Starship Prompt, Gum, FZF, Ripgrep, Fastfetch |
-| **Development** | Neovim, VS Code, Antigravity IDE, Git, GitHub CLI, Docker, Dev Containers |
+| **Development** | Neovim, VS Code, Antigravity IDE & CLI (`agy`), OpenCode, Git, GitHub CLI, Docker, Dev Containers |
 | **Productivity** | Google Chrome, Ulauncher, Flameshot, Btop, TLP |
-| **Communication** | Slack, Microsoft Teams, Discord, Signal, WhatsApp (All Optional) |
+| **Communication & Web** | Slack, Microsoft Teams, Discord, Signal, WhatsApp, HEY, Basecamp (All Optional) |
 | **Extensions** | Tactile (Grid tiling), Space Bar (Workspace switcher), TopHat (System meters), Just Perfection |
 
 ---
