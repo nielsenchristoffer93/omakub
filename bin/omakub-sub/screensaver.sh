@@ -100,6 +100,7 @@ elif [ "$CHOICE" = "Start Screensaver" ]; then
     --class OmakubScreensaver,OmakubScreensaver \
     --title "Omakub Screensaver" \
     -e bash -c "source '$RUNNER'"
+  pkill -f "omakub-screensaver-blackout" 2>/dev/null || true
 elif [ "$CHOICE" = "Preview Logo" ]; then
   show_preview
 elif [[ "$CHOICE" == "Choose Custom Logo"* ]] || [ "$CHOICE" = "Choose Custom Image" ]; then

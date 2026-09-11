@@ -39,10 +39,25 @@ EFFECTS=(
   "thunderstorm" "unstable" "vhstape" "waves" "wipe"
 )
 
+# Start blackout on secondary monitors if multi-monitor setup
+BLACKOUT_SCRIPT="$OMAKUB_DIR/bin/omakub-sub/screensaver-blackout.py"
+[ ! -f "$BLACKOUT_SCRIPT" ] && BLACKOUT_SCRIPT="$(dirname "$0")/screensaver-blackout.py"
+
+PYTHON_BIN="/usr/bin/python3"
+[ ! -x "$PYTHON_BIN" ] && PYTHON_BIN="python3"
+
+BLACKOUT_PID=""
+if [ -f "$BLACKOUT_SCRIPT" ]; then
+  $PYTHON_BIN "$BLACKOUT_SCRIPT" >/dev/null 2>&1 &
+  BLACKOUT_PID=$!
+fi
+
 # Restore terminal on exit
 ORIG_STTY=$(stty -g 2>/dev/null || true)
 
 cleanup() {
+  [ -n "$BLACKOUT_PID" ] && kill -TERM "$BLACKOUT_PID" 2>/dev/null || true
+  pkill -f "omakub-screensaver-blackout" 2>/dev/null || true
   [ -n "$KEY_PID" ] && kill -TERM "$KEY_PID" 2>/dev/null || true
   pkill -P $$ 2>/dev/null || true
   tput cnorm 2>/dev/null || true

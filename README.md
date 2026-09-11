@@ -60,6 +60,7 @@ Pre-configured with dedicated LazyVim plugins for both Google DeepMind's **Antig
 An eye-catching screensaver for your terminal powered by [`terminaltexteffects`](https://github.com/ChrisBuilds/terminaltexteffects):
 * **Dynamic Multi-Stop Gradient ASCII Art**: Automatically converts images (`.png`, `.jpg`) or raw ASCII art (`.txt`, `.ascii`) with aspect-ratio preservation and rotating gradients (0°–360° and radial).
 * **Over 30 Particle Animations**: Rain, beams, synthgrid, decrypt, blackhole, colorshift, and more running at 80fps.
+* **Multi-Monitor Blackout**: Runs ASCII animation on your primary display while automatically blanking all secondary monitors.
 * **Configurable**: Choose custom image/ASCII art, idle timeout (2m–30m), and optional desktop lock-on-wake.
 * **Instant Start**: Launch via `omakub -> Screensaver` or search **Screensaver** in your application launcher.
 

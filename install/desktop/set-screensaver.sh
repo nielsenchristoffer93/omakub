@@ -5,6 +5,9 @@ SERVICE_DIR="$HOME/.config/systemd/user"
 CONFIG_DIR="$HOME/.config/omakub/screensaver"
 mkdir -p "$SERVICE_DIR" "$CONFIG_DIR" "$HOME/.config/alacritty"
 
+# Ensure multi-monitor blackout dependencies are present
+sudo apt install -y python3-gi gir1.2-gtk-3.0 >/dev/null 2>&1 || true
+
 # Set default 5 minute (300 seconds) idle timeout if not configured
 if [ ! -f "$CONFIG_DIR/idle_timeout" ]; then
   echo "300" > "$CONFIG_DIR/idle_timeout"

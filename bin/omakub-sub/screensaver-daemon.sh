@@ -24,6 +24,13 @@ get_idle_ms() {
   fi
 }
 
+cleanup_daemon() {
+  pkill -f "OmakubScreensaver" 2>/dev/null || true
+  pkill -f "omakub-screensaver-blackout" 2>/dev/null || true
+  exit 0
+}
+trap cleanup_daemon INT TERM EXIT
+
 echo "Omakub screensaver daemon started."
 
 while true; do
@@ -47,6 +54,7 @@ while true; do
     # Only launch if not already running
     if ! pgrep -f "OmakubScreensaver" &>/dev/null; then
       echo "Idle threshold reached: ${IDLE_MS}ms >= ${THRESHOLD_MS}ms. Starting screensaver..."
+      pkill -f "omakub-screensaver-blackout" 2>/dev/null || true
       
       alacritty \
         --config-file "$ALACRITTY_CONF" \
@@ -68,6 +76,7 @@ while true; do
           echo "User wake-up detected (${CURRENT_IDLE}ms). Terminating screensaver..."
           kill -TERM $SAVER_PID 2>/dev/null || true
           pkill -f "OmakubScreensaver" 2>/dev/null || true
+          pkill -f "omakub-screensaver-blackout" 2>/dev/null || true
           break
         fi
 
@@ -77,6 +86,7 @@ while true; do
           echo "Extended idle reached (${CURRENT_IDLE}ms). Auto-locking session..."
           kill -TERM $SAVER_PID 2>/dev/null || true
           pkill -f "OmakubScreensaver" 2>/dev/null || true
+          pkill -f "omakub-screensaver-blackout" 2>/dev/null || true
           loginctl lock-session 2>/dev/null || true
           break
         fi
@@ -85,6 +95,7 @@ while true; do
       done
 
       wait $SAVER_PID 2>/dev/null || true
+      pkill -f "omakub-screensaver-blackout" 2>/dev/null || true
       echo "Screensaver window closed."
 
       # Check if lock on wake is enabled
